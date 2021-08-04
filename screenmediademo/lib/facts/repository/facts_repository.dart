@@ -20,4 +20,8 @@ class FactsRepository {
 
     return FactsResponse.fromJson(responseJson.data).facts;
   }
+
+  Future<void> clearCache() async {
+    // clean facts cache
+  }
 }
