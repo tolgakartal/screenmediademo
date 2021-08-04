@@ -1,32 +1,32 @@
-part of 'facts_bloc.dart';
+// part of 'facts_bloc.dart';
 
-@immutable
-abstract class FactsState extends Equatable {}
+// @immutable
+// abstract class FactsState extends Equatable {}
 
-class FactsInitial extends FactsState {
-  @override
-  List<Object?> get props => [];
-}
+// class FactsInitial extends FactsState {
+//   @override
+//   List<Object?> get props => [];
+// }
 
-class FactsLoading extends FactsState {
-  @override
-  List<Object?> get props => [];
-}
+// class FactsLoading extends FactsState {
+//   @override
+//   List<Object?> get props => [];
+// }
 
-class FactsInitialised extends FactsState {
-  final List<Fact> facts;
+// class FactsInitialised extends FactsState {
+//   final List<Fact> facts;
 
-  FactsInitialised(this.facts);
+//   FactsInitialised(this.facts);
 
-  @override
-  List<Object?> get props => [
-        facts,
-      ];
-}
+//   @override
+//   List<Object?> get props => [
+//         facts,
+//       ];
+// }
 
-class FactsEmpty extends FactsState {
-  FactsEmpty();
+// class FactsEmpty extends FactsState {
+//   FactsEmpty();
 
-  @override
-  List<Object?> get props => [];
-}
+//   @override
+//   List<Object?> get props => [];
+// }

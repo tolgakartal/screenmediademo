@@ -1,9 +1,9 @@
-part of 'facts_bloc.dart';
+// part of 'facts_bloc.dart';
 
-@immutable
-abstract class FactsEvent extends Equatable {}
+// @immutable
+// abstract class FactsEvent extends Equatable {}
 
-class FactsInitialise extends FactsEvent {
-  @override
-  List<Object?> get props => [];
-}
+// class FactsInitialise extends FactsEvent {
+//   @override
+//   List<Object?> get props => [];
+// }

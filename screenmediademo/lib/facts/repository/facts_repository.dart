@@ -1,27 +1,28 @@
 import 'package:screenmediademo/facts/models/fact.dart';
-import 'package:screenmediademo/utils/http_client.dart';
-import 'package:screenmediademo/facts/models/facts_response.dart';
+import 'package:screenmediademo/facts/repository/local_provider.dart';
+import 'package:screenmediademo/facts/repository/remote_provider.dart';
 
 class FactsRepository {
-  static final FactsRepository _singletonInstance = FactsRepository._singleton();
-  FactsRepository._singleton();
-  factory FactsRepository() {
-    return _singletonInstance;
-  }
+  final FactsLocalProvider _localProvider;
+  final FactsRemoteProvider _remoteProvider;
 
-  Future<List<Fact>> loadFacts() async {
-    final responseJson = await HttpClient().dio.get(
-      '/facts/random',
-      queryParameters: {
-        'animal_type': 'cat',
-        'amount': 5,
-      },
-    );
+  FactsRepository(
+    this._localProvider,
+    this._remoteProvider,
+  );
 
-    return FactsResponse.fromJson(responseJson.data).facts;
+  Future<List<Fact>>? loadFacts() async {
+    try {
+      final facts = await _remoteProvider.loadFacts();
+      await _localProvider.cacheFacts(facts);
+      return facts;
+    } on Exception {
+      // When fresh api data fails, fetch local data
+      return await _localProvider.getLocalFacts();
+    }
   }
 
   Future<void> clearCache() async {
-    // clean facts cache
+    await _localProvider.removeAll();
   }
 }
